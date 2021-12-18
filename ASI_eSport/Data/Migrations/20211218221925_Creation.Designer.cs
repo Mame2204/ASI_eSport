@@ -4,14 +4,16 @@ using ASI_eSport.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASI_eSport.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211218221925_Creation")]
+    partial class Creation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,12 +34,17 @@ namespace ASI_eSport.Data.Migrations
                     b.Property<int>("Equipe1ID")
                         .HasColumnType("int");
 
+                    b.Property<int>("Equipe2ID")
+                        .HasColumnType("int");
+
                     b.Property<string>("TypeFormule")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
                     b.HasIndex("Equipe1ID");
+
+                    b.HasIndex("Equipe2ID");
 
                     b.ToTable("Championnat");
                 });
@@ -316,7 +323,15 @@ namespace ASI_eSport.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ASI_eSport.Models.Equipe", "Equipe2")
+                        .WithMany()
+                        .HasForeignKey("Equipe2ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Equipe1");
+
+                    b.Navigation("Equipe2");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
