@@ -1,0 +1,31 @@
+﻿@page
+@model ASI_eSport.Pages.JeuxCompetition.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Jeu_competition</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Jeu_competition.LaCompetitionID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Jeu_competition.LaCompetitionID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Jeu_competition.LeJeu)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Jeu_competition.LeJeu.LibelleJeu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Jeu_competition.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

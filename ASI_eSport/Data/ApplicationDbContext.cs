@@ -18,6 +18,7 @@ namespace ASI_eSport.Data
         public DbSet<Jeu> Jeu { get; set; }
         public DbSet<Competition> Competition { get; set; }
         public DbSet<Equipe> Equipe { get; set; }
+        public DbSet<ASI_eSport.Models.Jeu_competition> Jeu_competition { get; set; }
         
 
     }
