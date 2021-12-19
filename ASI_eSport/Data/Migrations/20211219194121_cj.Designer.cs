@@ -4,14 +4,16 @@ using ASI_eSport.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASI_eSport.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211219194121_cj")]
+    partial class cj
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,6 +98,9 @@ namespace ASI_eSport.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("LaCompetionID")
+                        .HasColumnType("int");
+
                     b.Property<int>("LaCompetitionID")
                         .HasColumnType("int");
 
@@ -104,7 +109,7 @@ namespace ASI_eSport.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("LaCompetitionID");
+                    b.HasIndex("LaCompetionID");
 
                     b.HasIndex("LeJeuID");
 
@@ -345,11 +350,9 @@ namespace ASI_eSport.Data.Migrations
 
             modelBuilder.Entity("ASI_eSport.Models.Jeu_competition", b =>
                 {
-                    b.HasOne("ASI_eSport.Models.Competition", "LaCompetition")
+                    b.HasOne("ASI_eSport.Models.Competition", "LaCompetion")
                         .WithMany("Jeux_Competitions")
-                        .HasForeignKey("LaCompetitionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LaCompetionID");
 
                     b.HasOne("ASI_eSport.Models.Jeu", "LeJeu")
                         .WithMany("Jeux_Competitions")
@@ -357,7 +360,7 @@ namespace ASI_eSport.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("LaCompetition");
+                    b.Navigation("LaCompetion");
 
                     b.Navigation("LeJeu");
                 });

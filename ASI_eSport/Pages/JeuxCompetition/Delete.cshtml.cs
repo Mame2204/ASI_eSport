@@ -54,7 +54,8 @@ namespace ASI_eSport.Pages.JeuxCompetition
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new { id = Jeu_competition.LaCompetitionID });
+
         }
     }
 }

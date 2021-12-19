@@ -29,6 +29,9 @@
     <form method="post">
         <input type="hidden" asp-for="Jeu_competition.ID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="./Index" asp-route-id="@Model.Jeu_competition.LaCompetitionID">
+            Retour à la compétition
+        </a>
+
     </form>
 </div>

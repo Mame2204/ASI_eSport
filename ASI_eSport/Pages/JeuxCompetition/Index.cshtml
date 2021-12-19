@@ -9,10 +9,10 @@
 
 
 <p>
-    <a asp-page="./Create" asp-route-id="@Model.Competition">Associer un nouveu Jeu</a>
+    <a asp-page="./Create" asp-route-id="@Model.CompetitionID">Associer un nouveu Jeu</a>
 </p>
 <p>
-    <a asp-page="../Enseignants/Index" asp-route-id="@Model.CompetitionID">Retour à la compétition</a>
+    <a asp-page="../Competitions/Index" asp-route-id="@Model.CompetitionID">Retour à la compétition</a>
 </p>
 <h4>Jeu(x) associées à: @Html.DisplayFor(model => Model.Competition.LibelleCompetion)</h4>
 

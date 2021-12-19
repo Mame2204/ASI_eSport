@@ -31,7 +31,7 @@ namespace ASI_eSport.Pages.JeuxCompetition
             }
 
             Jeu_competition = await _context.Jeu_competition
-                .Include(j => j.LeJeu).FirstOrDefaultAsync(m => m.ID == id);
+                .Include(j => j.LeJeu).Include(c => c.LaCompetition).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Jeu_competition == null)
             {
@@ -68,7 +68,8 @@ namespace ASI_eSport.Pages.JeuxCompetition
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../JeuxCompetition/Index", new { id = Jeu_competition.LaCompetitionID });
+
         }
 
         private bool Jeu_competitionExists(int id)

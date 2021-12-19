@@ -7,30 +7,36 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ASI_eSport.Data;
 using ASI_eSport.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASI_eSport.Pages.JeuxCompetition
 {
     public class CreateModel : PageModel
     {
         private readonly ASI_eSport.Data.ApplicationDbContext _context;
+        public Competition Competition { get; set; }
+        [BindProperty]
+        public Jeu_competition Jeu_competition { get; set; }
 
         public CreateModel(ASI_eSport.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-        ViewData["LeJeuID"] = new SelectList(_context.Jeu, "ID", "LibelleJeu");
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Competition = await _context.Competition.FirstOrDefaultAsync(m => m.ID == (int)id);
+            ViewData["LeJeuID"] = new SelectList(_context.Jeu, "ID", "LibelleJeu");
             return Page();
         }
-
-        [BindProperty]
-        public Jeu_competition Jeu_competition { get; set; }
-
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -39,7 +45,8 @@ namespace ASI_eSport.Pages.JeuxCompetition
             _context.Jeu_competition.Add(Jeu_competition);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("../JeuxCompetition/Index", new { id = Jeu_competition.LaCompetitionID });
+
         }
     }
 }

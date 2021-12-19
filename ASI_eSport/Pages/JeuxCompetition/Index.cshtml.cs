@@ -34,7 +34,7 @@ namespace ASI_eSport.Pages.JeuxCompetition
             Competition = _context.Competition.Find(id);
             // Récupération des UEs de cet enseignant
             Jeu_competition = await _context.Jeu_competition
-            .Include(e => e.LaCompetion).Where(e => e.LaCompetion.ID == id)
+            .Include(e => e.LaCompetition).Where(e => e.LaCompetition.ID == id)
             .Include(e => e.LeJeu).ToListAsync();
             if (Jeu_competition == null)
             {

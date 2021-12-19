@@ -9,9 +9,9 @@ namespace ASI_eSport.Models
     {
         //Clé primaire
         public int ID { get; set; }
-        //Lien de composition vers la cpmpétition
-        public int LaCompetitionID { get; set; }
-        public Competition LaCompetion { get; set; }
+        //Lien de composition vers la compétition
+        public int LaCompetitionID { get; set;}
+        public Competition LaCompetition { get; set;}
         //Lien de composition vers l'UE
         public int LeJeuID { get; set; }
         public Jeu LeJeu { get; set; }
