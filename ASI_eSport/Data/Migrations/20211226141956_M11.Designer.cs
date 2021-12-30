@@ -4,14 +4,16 @@ using ASI_eSport.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASI_eSport.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211226141956_M11")]
+    partial class M11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,32 +156,9 @@ namespace ASI_eSport.Data.Migrations
                     b.Property<string>("Prenom")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Statut")
-                        .HasColumnType("bit");
-
                     b.HasKey("ID");
 
                     b.ToTable("Licencie");
-                });
-
-            modelBuilder.Entity("ASI_eSport.Models.Rencontre", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CompetitionconcerneeID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateRencontre")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("CompetitionconcerneeID");
-
-                    b.ToTable("Rencontre");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -415,7 +394,7 @@ namespace ASI_eSport.Data.Migrations
             modelBuilder.Entity("ASI_eSport.Models.Equipe", b =>
                 {
                     b.HasOne("ASI_eSport.Models.Jeu", "JeuChoisi")
-                        .WithMany()
+                        .WithMany("EquipesInscrites")
                         .HasForeignKey("JeuChoisiID");
 
                     b.Navigation("JeuChoisi");
@@ -438,15 +417,6 @@ namespace ASI_eSport.Data.Migrations
                     b.Navigation("LaCompetition");
 
                     b.Navigation("LeJeu");
-                });
-
-            modelBuilder.Entity("ASI_eSport.Models.Rencontre", b =>
-                {
-                    b.HasOne("ASI_eSport.Models.Competition", "Competitionconcernee")
-                        .WithMany()
-                        .HasForeignKey("CompetitionconcerneeID");
-
-                    b.Navigation("Competitionconcernee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -512,6 +482,8 @@ namespace ASI_eSport.Data.Migrations
 
             modelBuilder.Entity("ASI_eSport.Models.Jeu", b =>
                 {
+                    b.Navigation("EquipesInscrites");
+
                     b.Navigation("Jeux_Competitions");
                 });
 

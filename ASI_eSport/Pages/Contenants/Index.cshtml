@@ -1,0 +1,45 @@
+﻿@page
+@model ASI_eSport.Pages.Contenants.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="./Create" asp-route-id="@Model.EquipeID">Associer un nouveau Licencié</a>
+</p>
+<p>
+    <a asp-page="../Contenants/Index" asp-route-id="@Model.EquipeID">
+        Retour à l'équipe
+    </a>
+</p>
+<h4>
+    Les licencies de l'équipe de @Html.DisplayFor(model => model.Equipe.JeuChoisi.LibelleJeu): @Html.DisplayFor(model => model.Equipe.NomEquipe)
+</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Contenir[0].LeLicencie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Contenir)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeLicencie.NomComplet)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

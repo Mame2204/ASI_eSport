@@ -12,7 +12,19 @@ namespace ASI_eSport.Models
         public string Nom { get; set; }
         public string Prenom { get; set; }
         [DataType(DataType.Date)]
-
         public DateTime Naissance { get; set; }
+        public Boolean Statut { get; set; }
+        // Lien de navigation ManyToMany
+        [Display(Name = "les liencies de l'equipe")]
+        public ICollection<Contenir> LesContenir { get; set; }
+
+        [Display(Name = "Nom du licencie")]
+        public string NomComplet
+        {
+            get
+            {
+                return Nom + " " + Prenom;
+            }
+        }
     }
 }

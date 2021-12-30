@@ -18,8 +18,14 @@ namespace ASI_eSport.Data
         public DbSet<Jeu> Jeu { get; set; }
         public DbSet<Competition> Competition { get; set; }
         public DbSet<Equipe> Equipe { get; set; }
+        public DbSet<Rencontre> Rencontre { get; set; }
         public DbSet<Jeu_competition> Jeu_competition { get; set; }
-        
+        public DbSet<Contenir> Contenir { get; set; }
 
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Contenir>()
+                .HasKey(le => new { le.LEquipeID, le.LeLicencieID });
+        }*/
     }
 }

@@ -11,6 +11,8 @@ namespace ASI_eSport.Models
         public int ID { get; set; }
         [Required]
         public string LibelleJeu { get; set; } // exp football
+
+        //public ICollection<Equipe> EquipesInscrites { get; set; }
         //Lien ManyToMany
         [Display(Name = "Compétitions incluants le jeu")]
         public ICollection<Jeu_competition> Jeux_Competitions { get; set; }
